@@ -30,4 +30,16 @@ public enum Version {
             return null;
         }
     }
+
+    public static Version valueOfByName(String name) {
+
+        if (name.equalsIgnoreCase("MQIsdp")) {
+            return VERSION_V31;
+        } else if (name.equalsIgnoreCase("MQTT")) {
+            return VERSION_V311;
+        } else {
+            return null;
+        }
+
+    }
 }

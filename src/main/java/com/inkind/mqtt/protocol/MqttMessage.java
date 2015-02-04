@@ -28,7 +28,6 @@ public abstract class MqttMessage {
     private boolean dup;
     private QoSType qos;
     private boolean retain;
-    private int remainingLength;
 
     public MqttMessage(byte msgType) {
         this.msgType = msgType;
@@ -39,15 +38,7 @@ public abstract class MqttMessage {
     }
 
     public int getRemainingLength() {
-        return remainingLength;
-    }
-
-    public void setMsgType(byte msgType) {
-        this.msgType = msgType;
-    }
-
-    protected void setRemainingLength(int remainingLength) {
-        this.remainingLength = remainingLength;
+        return -1;
     }
 
 }

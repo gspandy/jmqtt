@@ -1,4 +1,4 @@
-package com.inkind.mqtt.protocol;
+package com.jmqtt.protocol;
 
 public interface ITetain {
 

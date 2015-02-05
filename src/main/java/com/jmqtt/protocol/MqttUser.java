@@ -1,4 +1,4 @@
-package com.inkind.mqtt.protocol;
+package com.jmqtt.protocol;
 
 public class MqttUser {
     private String clientId;

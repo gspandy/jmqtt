@@ -25,9 +25,10 @@ public abstract class MqttMessage {
     public static final byte CONNACK_REFUSED_NOT_AUTHORIZED = 5;
 
     private byte msgType;
-    private boolean dup;
-    private QoSType qos;
-    private boolean retain;
+
+    // private boolean dup;
+    // private QoSType qos;
+    // private boolean retain;
 
     public MqttMessage(byte msgType) {
         this.msgType = msgType;
@@ -35,6 +36,18 @@ public abstract class MqttMessage {
 
     public byte getMsgType() {
         return msgType;
+    }
+
+    public boolean isDup() {
+        return false;
+    }
+
+    public QoSType getQos() {
+        return QoSType.RESERVED;
+    }
+
+    public boolean isRetain() {
+        return false;
     }
 
     public int getRemainingLength() {

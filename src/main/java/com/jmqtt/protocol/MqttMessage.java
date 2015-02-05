@@ -17,21 +17,15 @@ public abstract class MqttMessage {
     public static final byte MESSAGE_TYPE_PINGRESP = 13; // PING Response
     public static final byte MESSAGE_TYPE_DISCONNECT = 14; // Client is Disconnecting
 
-    public static final byte CONNACK_ACCEPTED = 0;
-    public static final byte CONNACK_REFUSED_PROTOCOL_VERSION = 1;
-    public static final byte CONNACK_REFUSED_IDENTIFIER_REJECTED = 2;
-    public static final byte CONNACK_REFUSED_SERVER_UNAVAILABLE = 3;
-    public static final byte CONNACK_REFUSED_BAD_USERNAME_PASSWORD = 4;
-    public static final byte CONNACK_REFUSED_NOT_AUTHORIZED = 5;
+    public static final String DEFAULT_CHARSET = "UTF-8";
 
-    private byte msgType;
+    protected byte msgType;
 
     // private boolean dup;
     // private QoSType qos;
     // private boolean retain;
 
-    public MqttMessage(byte msgType) {
-        this.msgType = msgType;
+    public MqttMessage() {
     }
 
     public byte getMsgType() {
@@ -42,16 +36,18 @@ public abstract class MqttMessage {
         return false;
     }
 
-    public QoSType getQos() {
-        return QoSType.RESERVED;
+    public QosType getQos() {
+        return QosType.RESERVED;
     }
 
     public boolean isRetain() {
         return false;
     }
 
-    public int getRemainingLength() {
-        return -1;
+    public byte getFixedHeader() {
+        return (byte) ((getMsgType() << 4) | (isDup() ? (0x01 << 3) : 0x00) | (getQos().value() << 1) | (isRetain() ? 0x01 : 0x00));
     }
+
+    public abstract int getRemainingLength();
 
 }

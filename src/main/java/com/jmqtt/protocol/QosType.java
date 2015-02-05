@@ -1,12 +1,12 @@
 package com.jmqtt.protocol;
 
-public enum QoSType {
+public enum QosType {
 
     MOST_ONCE((byte) 0), LEAST_ONCE((byte) 1), EXACTLY_ONCE((byte) 2), RESERVED((byte) 3);
 
     private byte value;
 
-    private QoSType(byte value) {
+    private QosType(byte value) {
         this.value = value;
     }
 
@@ -14,7 +14,7 @@ public enum QoSType {
         return this.value;
     }
 
-    public static QoSType valueOf(byte value) {
+    public static QosType valueOf(byte value) {
         switch (value) {
         case 0:
             return MOST_ONCE;

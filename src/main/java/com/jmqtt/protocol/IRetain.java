@@ -1,6 +1,6 @@
 package com.jmqtt.protocol;
 
-public interface ITetain {
+public interface IRetain {
 
     public void setRetain(boolean retain);
 

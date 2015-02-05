@@ -1,15 +1,23 @@
 package com.jmqtt.protocol;
 
+import java.io.UnsupportedEncodingException;
+
 public enum Version {
 
     VERSION_V31((byte) 3, "MQIsdp"), VERSION_V311((byte) 4, "MQTT");
 
     private byte value;
     private String name;
+    private byte[] nameBytes;
 
     private Version(byte value, String name) {
         this.value = value;
         this.name = name;
+        try {
+            this.nameBytes = name.getBytes(MqttMessage.DEFAULT_CHARSET);
+        } catch (UnsupportedEncodingException e) {
+            this.nameBytes = name.getBytes();
+        }
     }
 
     public byte getValue() {
@@ -18,6 +26,10 @@ public enum Version {
 
     public String getName() {
         return this.name;
+    }
+
+    public byte[] getNameBytes() {
+        return this.nameBytes;
     }
 
     public static Version valueOf(byte value) {

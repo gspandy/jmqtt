@@ -10,9 +10,17 @@ repositories {
     //maven { url "http://maven.oschina.net/content/groups/public/" }
 }
 
-ext.nettyVersion = "4.0.24.Final"
+ext.junitVersion = "4.12"
+ext.slf4jVersion = "1.7.10"
+ext.nettyVersion = "4.0.26.Final"
+ext.zkclientVersion = "0.4"
 
-dependencies { compile("io.netty:netty-all:${nettyVersion}") }
+dependencies {
+    testCompile("junit:junit:${junitVersion}")
+    compile("org.slf4j:slf4j-api:${slf4jVersion}")
+    compile("io.netty:netty-all:${nettyVersion}")
+    compile("com.101tec:zkclient:${zkclientVersion}")
+}
 
 //mainClassName = 'com.sinosun.mqtt.client.MultiClientTest'
 //applicationDefaultJvmArgs = ["-Dlogback.configurationFile=conf/logback.xml","-Dio.netty.allocator.type=pooled","-Xms1G", "-Xmx4G", "-Xmn2G", "-Xss128K","-Dcom.sun.management.jmxremote.port=2020","-Dcom.sun.management.jmxremote.ssl=false","-Dcom.sun.management.jmxremote.authenticate=false","-Djava.rmi.server.hostname=192.168.2.203"]
